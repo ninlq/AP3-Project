@@ -16,47 +16,77 @@
 <h1>Module <a href="type_Bst.html">Bst</a></h1>
 
 <pre><span class="keyword">module</span> Bst: <code class="code">sig</code> <a href="Bst.html">..</a> <code class="code">end</code></pre><div class="info module top">
-Définition du type pour un arbre binaire de recherche.<br>
+Type pour un arbre binaire.
+  Un arbre peut être soit vide (Empty), soit un nœud (Node) 
+  contenant une valeur de type 'a et deux sous-arbres (gauche et droit).<br>
 </div>
 <hr width="100%">
 
-<pre><span id="TYPEbst"><span class="keyword">type</span> <code class="type">'a</code> bst</span> </pre>
-
-
-<pre><span id="VALinsert"><span class="keyword">val</span> insert</span> : <code class="type">int * int <a href="Bst.html#TYPEbst">bst</a> -> int <a href="Bst.html#TYPEbst">bst</a></code></pre><div class="info ">
-<code class="code">insert (x, tree)</code> insère l'élément <code class="code">x</code> dans l'arbre <code class="code">tree</code>.
-    Renvoie un nouvel arbre binaire de recherche contenant <code class="code">x</code>.<br>
+<pre><span id="TYPEt_btree"><span class="keyword">type</span> <code class="type">'a</code> t_btree</span> </pre>
+<div class="info ">
+Type pour un arbre binaire.
+  Un arbre peut être soit vide (Empty), soit un nœud (Node) 
+  contenant une valeur de type 'a et deux sous-arbres (gauche et droit).<br>
 </div>
 
-<pre><span id="VALbst_rnd_create"><span class="keyword">val</span> bst_rnd_create</span> : <code class="type">int -> int <a href="Bst.html#TYPEbst">bst</a></code></pre><div class="info ">
-<code class="code">bst_rnd_create n</code> crée un arbre binaire de recherche à partir de <code class="code">n</code> nombres
-    aléatoires. Les nombres sont générés aléatoirement entre 0 et 999.<br>
+
+<pre><span id="VALinsert"><span class="keyword">val</span> insert</span> : <code class="type">'a * 'a <a href="Bst.html#TYPEt_btree">t_btree</a> -> 'a <a href="Bst.html#TYPEt_btree">t_btree</a></code></pre><div class="info ">
+Insère un élément dans l'arbre binaire de recherche (ABR).
+  -param x La valeur à insérer dans l'arbre.
+  -param tree L'arbre dans lequel insérer la valeur.
+  -return Un nouvel arbre binaire de recherche avec l'élément inséré.<br>
 </div>
 
-<pre><span id="VALheight"><span class="keyword">val</span> height</span> : <code class="type">'a <a href="Bst.html#TYPEbst">bst</a> -> int</code></pre><div class="info ">
-<code class="code">height tree</code> calcule la hauteur de l'arbre <code class="code">tree</code>.
-    La hauteur d'un arbre vide est 0.<br>
+<pre><span id="VALbst_rnd_create"><span class="keyword">val</span> bst_rnd_create</span> : <code class="type">int -> int <a href="Bst.html#TYPEt_btree">t_btree</a></code></pre><div class="info ">
+Crée un arbre binaire de recherche à partir de n nombres aléatoires.
+  -param n Le nombre d'éléments à insérer dans l'arbre.
+  -return Un arbre binaire de recherche contenant n éléments aléatoires.<br>
 </div>
 
-<pre><span id="VALimbalance"><span class="keyword">val</span> imbalance</span> : <code class="type">'a <a href="Bst.html#TYPEbst">bst</a> -> int</code></pre><div class="info ">
-<code class="code">imbalance tree</code> calcule le déséquilibre de l'arbre <code class="code">tree</code>.
-    Le déséquilibre est défini comme la différence entre la hauteur du sous-arbre gauche
-    et la hauteur du sous-arbre droit.<br>
+<pre><span id="VALheight"><span class="keyword">val</span> height</span> : <code class="type">'a <a href="Bst.html#TYPEt_btree">t_btree</a> -> int</code></pre><div class="info ">
+Calcule la hauteur de l'arbre binaire.<br>
+<b>Returns</b> La hauteur de l'arbre, qui est le nombre de niveaux dans l'arbre.<br>
+</div>
+
+<pre><span id="VALimbalance"><span class="keyword">val</span> imbalance</span> : <code class="type">'a <a href="Bst.html#TYPEt_btree">t_btree</a> -> int</code></pre><div class="info ">
+Calcule le déséquilibre d'un arbre binaire.
+  Le déséquilibre est défini comme la différence entre la hauteur du sous-arbre gauche 
+  et celle du sous-arbre droit.
+  -param tree L'arbre dont on veut connaître le déséquilibre.
+  -return Un entier représentant le déséquilibre de l'arbre.<br>
 </div>
 
 <pre><span id="VALaverage_imbalance"><span class="keyword">val</span> average_imbalance</span> : <code class="type">int * int -> float</code></pre><div class="info ">
-<code class="code">average_imbalance (n, trial)</code> estime le déséquilibre moyen d'un arbre binaire
-    de recherche créé à partir de <code class="code">n</code> nombres aléatoires, en effectuant <code class="code">trial</code> essais.<br>
+Estime le déséquilibre moyen sur un certain nombre d'essais.
+  -param (n, trials) Un tuple où n est le nombre d'éléments dans chaque arbre 
+  et trials est le nombre d'essais à effectuer.
+  -return La moyenne des déséquilibres sur tous les arbres générés.<br>
 </div>
 
-<pre><span id="VALinsert_sorted_suite"><span class="keyword">val</span> insert_sorted_suite</span> : <code class="type">int -> int <a href="Bst.html#TYPEbst">bst</a></code></pre><div class="info ">
-<code class="code">insert_sorted_suite n</code> insère les nombres de 1 à <code class="code">n</code> dans l'arbre binaire de recherche
-    dans un ordre croissant. Renvoie l'arbre résultant.<br>
+<pre><span id="VALinsert_sorted_suite"><span class="keyword">val</span> insert_sorted_suite</span> : <code class="type">int -> int <a href="Bst.html#TYPEt_btree">t_btree</a></code></pre><div class="info ">
+Insère des nombres dans l'ordre croissant (1 à n) dans un arbre binaire de recherche.
+  -param n Le nombre maximum à insérer.
+  -return Un arbre binaire de recherche contenant les nombres de 1 à n.<br>
 </div>
 
 <pre><span id="VALaverage_imbalance_sorted"><span class="keyword">val</span> average_imbalance_sorted</span> : <code class="type">int * int -> float</code></pre><div class="info ">
-<code class="code">average_imbalance_sorted (n, trial)</code> estime le déséquilibre moyen d'un arbre binaire
-    de recherche créé à partir de <code class="code">n</code> nombres insérés dans un ordre croissant, en effectuant
-    <code class="code">trial</code> essais.<br>
+Estime le déséquilibre moyen pour des arbres construits avec des sous-suites ordonnées.
+  -param (n, trials) Un tuple où n est le nombre d'éléments dans chaque arbre 
+  et trials est le nombre d'essais à effectuer.
+  -return La moyenne des déséquilibres pour les arbres construits en ordre croissant.<br>
+</div>
+
+<pre><span id="VALmin_value_node"><span class="keyword">val</span> min_value_node</span> : <code class="type">'a <a href="Bst.html#TYPEt_btree">t_btree</a> -> 'a</code></pre><div class="info ">
+Trouve la valeur minimale dans un arbre binaire de recherche.
+  -param tree L'arbre dans lequel chercher la valeur minimale.
+  -return La valeur minimale trouvée dans l'arbre.
+  -raise Failure si l'arbre est vide.<br>
+</div>
+
+<pre><span id="VALdelete"><span class="keyword">val</span> delete</span> : <code class="type">'a * 'a <a href="Bst.html#TYPEt_btree">t_btree</a> -> 'a <a href="Bst.html#TYPEt_btree">t_btree</a></code></pre><div class="info ">
+Supprime un nœud contenant une valeur spécifiée dans l'arbre binaire de recherche.
+  -param x La valeur du nœud à supprimer.
+  -param tree L'arbre dans lequel supprimer le nœud.
+  -return Un nouvel arbre binaire de recherche sans le nœud supprimé.<br>
 </div>
 </body></html>
