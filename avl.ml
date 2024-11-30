@@ -20,6 +20,26 @@ let rotate_left ((tree, _) : 'a t_avl) : 'a t_avl =
   | _ -> failwith "Rotation gauche impossible"
 ;;
 
+let rotate_left_right ((tree, _) : 'a t_avl) : 'a t_avl =
+  match tree with
+  | Node (x, Node (y, a, Node (z, b, c)), d) ->
+      let left_rotated = rotate_left (Node (y, a, Node (z, b, c)), 0) in
+      rotate_right (Node (x, fst left_rotated, d), 0)
+  | _ -> failwith "Rotation gauche-droite impossible"
+;;
+
+
+
+let rotate_right_left ((tree, _) : 'a t_avl) : 'a t_avl =
+  match tree with
+  | Node (x, a, Node (y, Node (z, b, c), d)) ->
+      let right_rotated = rotate_right (Node (y, Node (z, b, c), d), 0) in
+      rotate_left (Node (x, a, fst right_rotated), 0)
+  | _ -> failwith "Rotation droite-gauche impossible"
+;;
+
+
+
 let reequilibrer ((tree, _) : 'a t_avl) : 'a t_avl =
   match tree with
   | Node (v, left, right) ->
